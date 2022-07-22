@@ -32,7 +32,6 @@ outputs:
 
 runs:
   using: "composite"
-  shell: bash
   steps:
     - name: Verify prefix was specified
       run: |
@@ -40,6 +39,7 @@ runs:
            echo "::error ::Failed to specify prefix to neutrons/branch-mapper"
            exit 1
         fi
+      shell: bash
     - name: Map reference to name
       id: determine-name
       run: |
@@ -61,6 +61,7 @@ runs:
             ;;
 
           esac
+      shell: bash
       env:
         PREFIX: ${{ inputs.prefix }}
         REFERENCE: ${{ inputs.reference }}
