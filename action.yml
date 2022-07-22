@@ -32,6 +32,7 @@ outputs:
 
 runs:
   using: "composite"
+  shell: bash
   steps:
     - name: Verify prefix was specified
       run: |
@@ -42,7 +43,7 @@ runs:
     - name: Map reference to name
       id: determine-name
       run: |
-        echo "REFERENCE=${REFERENCE}"
+        echo "::debug::REFERENCE=${REFERENCE}"
         case ${REFERENCE} in
           # tags that start with v and have rc in the name
           refs/tags/v*rc*)
@@ -60,7 +61,6 @@ runs:
             ;;
 
           esac
-      shell: bash
       env:
         PREFIX: ${{ inputs.prefix }}
         REFERENCE: ${{ inputs.reference }}
