@@ -55,7 +55,12 @@ runs:
             echo "::set-output name=name::${PREFIX}${{ inputs.suffix-release }}"
            ;;
 
-          # everything else gets is a devlopment version
+          # changes to main branch
+          refs/heads/main)
+            echo "::set-output name=name::${PREFIX}${{ inputs.suffix-release }}"
+            ;;
+
+          # everything else gets is a development version
           *)
             echo "::set-output name=name::${PREFIX}${{ inputs.suffix-default }}"
             ;;
