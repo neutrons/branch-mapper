@@ -47,17 +47,17 @@ runs:
         case ${REFERENCE} in
           # tags that start with v and have rc in the name
           refs/tags/v*rc*)
-            echo "::set-output name=name::${PREFIX}${{ inputs.suffix-release-candidate }}"
+            echo "name=${PREFIX}${{ inputs.suffix-release-candidate }}" >> $GITHUB_OUTPUT
             ;;
 
           # tags that start with v and aren't including rc
           refs/tags/v*)
-            echo "::set-output name=name::${PREFIX}${{ inputs.suffix-release }}"
+            echo "name=${PREFIX}${{ inputs.suffix-release }}" >> $GITHUB_OUTPUT
            ;;
 
-          # everything else gets is a devlopment version
+          # everything else gets is a development version
           *)
-            echo "::set-output name=name::${PREFIX}${{ inputs.suffix-default }}"
+            echo "name=${PREFIX}${{ inputs.suffix-default }}" >> $GITHUB_OUTPUT
             ;;
 
           esac
